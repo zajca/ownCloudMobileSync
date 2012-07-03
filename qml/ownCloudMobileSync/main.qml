@@ -12,7 +12,8 @@ PageStackWindow {
     }
 
     ToolBarLayout {
-        id: toolBarLayout
+        id: settingsToolBarLayout
+
         ToolButton {
             flat: true
             iconSource: "toolbar-back"
@@ -20,4 +21,24 @@ PageStackWindow {
         }
     }
 
+    ToolBarLayout {
+        id: toolBarLayout
+
+        ToolButton {
+            flat: true
+            iconSource: "toolbar-back"
+            onClicked: window.pageStack.depth <= 1 ? Qt.quit() : window.pageStack.pop()
+        }
+
+        ToolButton {
+            flat: true
+            iconSource: "toolbar-refresh"
+        }
+
+        ToolButton {
+            flat: true
+            iconSource: "toolbar-settings"
+            onClicked: window.pageStack.push(Qt.resolvedUrl("SettingsPage.qml"), { tools: settingsToolBarLayout } )
+        }
+    }
 }

@@ -48,33 +48,33 @@ Page {
 
             onClicked: {
                 syncListModel.set(index, { "selected": checkbox.checked })
-                //checkbox.checked = (checkbox.checked == true) ?  false : true
+                checkbox.checked = (checkbox.checked == true) ?  false : true
             }
 
             // The texts to display
-                 Column {
-                     anchors {
-                         left:  listItem.paddingItem.left
-                         top: listItem.paddingItem.top
-                         bottom: listItem.paddingItem.bottom
-                         right: checkbox.left
-                     }
+            Column {
+                anchors {
+                    left:  listItem.paddingItem.left
+                    top: listItem.paddingItem.top
+                    bottom: listItem.paddingItem.bottom
+                    right: checkbox.left
+                }
 
-                     ListItemText {
+                ListItemText {
                          mode: listItem.mode
                          role: "Title"
-                         text: name // Title text is from the 'name' property in the model item (ListElement)
+                         text: name
                          width: parent.width
-                     }
                  }
+            }
 
-                 // The checkbox to display
-                 CheckBox {
-                     id: checkbox
-                     checked: selected  // Checked state is from the 'selected' property in the model item
-                     anchors { right: listItem.paddingItem.right; verticalCenter: listItem.verticalCenter }
-                     //onClicked: syncListModel.set(index, { "selected": checkbox.checked })
-                 }
-             }
+            // The checkbox to display
+            CheckBox {
+                id: checkbox
+                checked: selected
+                anchors { right: listItem.paddingItem.right; verticalCenter: listItem.verticalCenter }
+                onClicked: syncListModel.set(index, { "selected": checkbox.checked })
+            }
+        }
     }
 }
